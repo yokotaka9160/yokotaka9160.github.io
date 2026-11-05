@@ -171,6 +171,10 @@ const WORKS = [
       "pytest と Playwright の E2E テストを Docker で実行"
     ],
     tags: ["React 19", "TypeScript", "Tailwind CSS", "FastAPI", "Leaflet", "Yelp API", "OSRM", "Docker", "Playwright"],
+    docs: [
+      { label: "要件定義書", url: "https://github.com/yokotaka9160/Find-Restaurant-App/blob/main/docs/requirements.md" },
+      { label: "設計書",     url: "https://github.com/yokotaka9160/Find-Restaurant-App/blob/main/docs/design.md" }
+    ],
     note: "無料サーバーのため、初回は起動に30秒ほどかかる場合があります。"
   },
   {
@@ -193,7 +197,10 @@ const WORKS = [
     status: "wip",
     summary: "株式取引の仮説（売買ルール）を過去データでシミュレーションし、損益結果を出力するツール。",
     points: ["仕様駆動開発（Spec Kit）で要件定義から進行中"],
-    tags: ["Python", "Spec Kit"]
+    tags: ["Python", "Spec Kit"],
+    docs: [
+      { label: "仕様書", url: "https://github.com/yokotaka9160/Stock-Hypothesis-App/blob/main/specs/001-stock-hypothesis-validation/spec.md" }
+    ],
   }
 ];
 
@@ -251,6 +258,7 @@ function card(w) {
         <div class="actions">
           ${demoBtn}
           <a class="btn" href="${esc(w.repo)}" target="_blank" rel="noopener">GitHub</a>
+          ${(w.docs || []).map(d => `<a class="btn" href="${esc(d.url)}" target="_blank" rel="noopener">📄 ${esc(d.label)}</a>`).join("")}
         </div>
         ${w.note && w.demo ? `<p class="note">${esc(w.note)}</p>` : ""}
       </div>
