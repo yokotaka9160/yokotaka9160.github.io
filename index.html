@@ -180,12 +180,16 @@ const WORKS = [
   {
     name: "Dive Log",
     repo: "https://github.com/yokotaka9160/Dive-Log-App",
-    demo: "",
+    demo: "https://deeplog-app.onrender.com",
     image: "",
     icon: "🤿",
-    status: "wip",
-    summary: "ダイビングのログ（日時・ポイント・水深・透明度など）を記録・振り返りできるアプリ。",
-    points: [],
+    status: "live",
+    summary: "ダイビングのログ（日時・ポイント・水深・透明度など）を記録・分析できるアプリ。",
+    points: [
+      "ユーザー認証（登録・ログイン・パスワードリセット）",
+      "ログの CRUD（作成・閲覧・編集・削除）",
+      "ログの統計情報を可視化ダッシュボードで表示",
+    ],
     tags: ["Python", "Django", "SQLite", "Docker"]
   },
   {
@@ -221,14 +225,6 @@ const ARCHIVE = [
     summary: "音声データ収集のための録音を補助するデスクトップGUI。",
     tags: ["Python", "Kivy"]
   },
-  {
-    name: "出欠管理サンプル",
-    repo: "https://github.com/yokotaka9160/attend_check",
-    icon: "✅",
-    status: "archive",
-    summary: "出欠を送信・確認できるシンプルなWebアプリ。",
-    tags: ["Python", "Flask", "HTML/CSS"]
-  }
 ];
 
 const STATUS_LABEL = { live: "完成", wip: "開発中", archive: "過去作" };
