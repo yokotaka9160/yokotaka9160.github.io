@@ -74,10 +74,12 @@
     .card.featured .thumb { flex: 0 0 46%; aspect-ratio: auto; min-height: 280px; }
   }
   .thumb {
+    position: relative; overflow: hidden;
     aspect-ratio: 16 / 9; background: var(--tag-bg); display: grid; place-items: center;
     color: var(--muted); font-size: 13px; border-bottom: 1px solid var(--border);
   }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* 画像は枠いっぱいに重ねて切り抜く（画像の大きさで枠が伸びないように） */
+  .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .thumb .ph { font-size: 40px; line-height: 1; }
   .body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
   .title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -87,6 +89,8 @@
   .status.wip { color: var(--wip); }
   .status.archive { color: var(--muted); }
   .summary { margin: 0; }
+  .dev { margin: 0; font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: baseline; }
+  .dev b { flex-shrink: 0; font-size: 12px; font-weight: 500; color: var(--tag-text); background: var(--tag-bg); padding: 2px 8px; border-radius: 6px; }
   .points { margin: 0; padding-left: 1.2em; color: var(--muted); font-size: 14px; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
   .tags li { background: var(--tag-bg); color: var(--tag-text); font-size: 12px; padding: 3px 9px; border-radius: 6px; }
@@ -153,17 +157,19 @@
  *  status: "live"（公開中） / "wip"（開発中） / "archive"（過去作）
  *  demo:   デプロイしたURL。空文字ならボタンは無効表示になります
  *  image:  スクリーンショットのパス（例: "images/find-restaurant.png"）。空なら仮のサムネイル
+ *  dev:    開発手法（「開発手法」として概要の下に表示）。空なら表示しない
  */
 const WORKS = [
   {
     name: "FindRestr",
     repo: "https://github.com/yokotaka9160/Find-Restaurant-App",
     demo: "https://find-restaurant-app-site.onrender.com/",            // TODO: Render 等にデプロイしたら URL を入れる
-    image: "",
+    image: "images/findrestr-home.png",
     icon: "🍽️",
     status: "live",
     featured: true,
     summary: "エリア・現在地・移動ルートの3通りで飲食店を探せるWebアプリ。リストと地図を切り替えて表示します。",
+    dev: "Claude を活用したバイブコーディング（Vibe Coding）で開発",
     points: [
       "ルート検索：出発地〜目的地の経路沿い（200m〜2km）の店舗を抽出",
       "ジャンル・予算・評価で絞り込み、条件変更で自動再検索",
@@ -181,11 +187,12 @@ const WORKS = [
     name: "DeepLog",
     repo: "https://github.com/yokotaka9160/Dive-Log-App",
     demo: "https://deeplog-app.onrender.com",
-    image: "",
+    image: "images/deeplog-home.png",
     icon: "🤿",
     status: "live",
     featured: true,
     summary: "ダイビングのログ（日時・ポイント・水深・透明度など）を記録・分析できるアプリ。",
+    dev: "UI は生成 AI（Figma）で作成し、バックエンドは手作業で開発",
     points: [
       "ユーザー認証（登録・ログイン・パスワードリセット）",
       "ログの CRUD（作成・閲覧・編集・削除）",
@@ -206,6 +213,7 @@ const WORKS = [
     icon: "📈",
     status: "wip",
     summary: "株式取引の仮説（売買ルール）を過去データでシミュレーションし、損益結果を出力するツール。",
+    dev: "Claude を活用した仕様駆動開発（Spec-Driven Development）で開発",
     points: ["仕様駆動開発（Spec Kit）で要件定義から進行中"],
     tags: ["Python", "Spec Kit"],
     docs: [
@@ -255,6 +263,7 @@ function card(w) {
           <span class="status ${w.status}">${STATUS_LABEL[w.status]}</span>
         </div>
         <p class="summary">${esc(w.summary)}</p>
+        ${w.dev ? `<p class="dev"><b>開発手法</b><span>${esc(w.dev)}</span></p>` : ""}
         ${w.points && w.points.length ? `<ul class="points">${w.points.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
         <ul class="tags">${w.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
         <div class="actions">
