@@ -143,7 +143,7 @@
     <div class="skills">
       <div class="skill"><h3>Frontend</h3><ul class="tags"><li>React</li><li>TypeScript</li><li>Vite</li><li>Tailwind CSS</li><li>shadcn/ui</li><li>Leaflet</li></ul></div>
       <div class="skill"><h3>Backend</h3><ul class="tags"><li>Python</li><li>FastAPI</li><li>Django</li><li>Flask</li><li>Pydantic</li></ul></div>
-      <div class="skill"><h3>Infra / Test</h3><ul class="tags"><li>Docker</li><li>Docker Compose</li><li>nginx</li><li>pytest</li><li>Playwright</li></ul></div>
+      <div class="skill"><h3>Infra / Test</h3><ul class="tags"><li>Docker</li><li>Docker Compose</li><li>Redis</li><li>nginx</li><li>pytest</li><li>Playwright</li></ul></div>
       <div class="skill"><h3>ML / Other</h3><ul class="tags"><li>SIDEKIT（話者認識）</li><li>Kivy</li><li>Git</li><li>Spec-driven development</li></ul></div>
     </div>
   </section>
@@ -204,6 +204,29 @@ const WORKS = [
       { label: "要件定義書", url: "https://github.com/yokotaka9160/Dive-Log-App/blob/main/docs/requirements.md" },
       { label: "設計書",     url: "https://github.com/yokotaka9160/Dive-Log-App/blob/main/docs/design.md" }
     ],
+  },
+  {
+    name: "Branchout Chat",
+    repo: "https://github.com/yokotaka9160/branchout-chat",
+    demo: "",                                                           // TODO: Render にデプロイしたら URL を入れる
+    image: "images/branchout-chat-home.png",
+    icon: "🌿",
+    status: "live",
+    featured: true,
+    summary: "生成 AI との会話中に、応答の中の分からない言葉だけを、メインの会話とは別の「サブ会話」で質問できるチャットアプリ。",
+    dev: "UI は生成 AI（Figma Make）で作成し、バックエンドは手作業で開発",
+    points: [
+      "応答の文字を選んで右クリック →「意味を聞く」で、メイン会話の文脈に沿った説明をサブ会話で表示",
+      "メイン会話とサブ会話を、用語集つきのノート（Markdown）にまとめて編集・ダウンロード",
+      "応答を SSE で少しずつ表示。長い会話は古い部分を自動で要約して送る",
+      "会話はブラウザに保存してログイン不要。利用回数は Redis で 1 日 10 回に制限"
+    ],
+    tags: ["React 19", "TypeScript", "Tailwind CSS", "FastAPI", "Google Gemini API", "SSE", "Redis", "Docker"],
+    docs: [
+      { label: "要件定義書", url: "https://github.com/yokotaka9160/branchout-chat/blob/main/docs/requirements.md" },
+      { label: "設計書",     url: "https://github.com/yokotaka9160/branchout-chat/blob/main/docs/design.md" }
+    ],
+    note: "無料サーバーのため、初回は起動に1分ほどかかる場合があります。"
   },
   {
     name: "Stock Hypothesis Simulator",
